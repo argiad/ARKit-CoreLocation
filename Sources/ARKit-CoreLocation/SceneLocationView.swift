@@ -197,6 +197,18 @@ public extension SceneLocationView {
         sceneLocationManager.run()
     }
 
+    func run(with configuration: ARConfiguration){
+        switch arTrackingType {
+        case .worldTracking:
+            configuration.worldAlignment = orientToTrueNorth ? .gravityAndHeading : .gravity
+            session.run(configuration)
+        case .orientationTracking:
+            configuration.worldAlignment = orientToTrueNorth ? .gravityAndHeading : .gravity
+            session.run(configuration)
+        }
+        sceneLocationManager.run()
+    }
+    
     func pause() {
         session.pause()
         sceneLocationManager.pause()
