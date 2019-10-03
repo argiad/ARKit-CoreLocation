@@ -197,14 +197,14 @@ public extension SceneLocationView {
         sceneLocationManager.run()
     }
 
-    func run(with configuration: ARConfiguration){
+    func run(with configuration: ARConfiguration, options: ARSession.RunOptions = []){
         switch arTrackingType {
         case .worldTracking:
             configuration.worldAlignment = orientToTrueNorth ? .gravityAndHeading : .gravity
             session.run(configuration)
         case .orientationTracking:
             configuration.worldAlignment = orientToTrueNorth ? .gravityAndHeading : .gravity
-            session.run(configuration)
+            session.run(configuration, options: options)
         }
         sceneLocationManager.run()
     }
